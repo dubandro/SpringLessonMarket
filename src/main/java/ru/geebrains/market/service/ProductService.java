@@ -21,6 +21,10 @@ public class ProductService {
         return repository.productById(id);
     }
 
+    public Long nextID() {
+        return repository.nextID();
+    }
+
     public void addProduct(Product product) {
         repository.addProduct(product);
     }

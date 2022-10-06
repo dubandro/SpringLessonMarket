@@ -28,6 +28,10 @@ public class ProductRepository {
                 .orElseThrow(() -> new RuntimeException("Товар не неайден"));
     }
 
+    public Long nextID() {
+        return productList.get(productList.size()-1).getId() + 1;
+    }
+
     public List<Product> productAll() {
         return Collections.unmodifiableList(productList);
     }
