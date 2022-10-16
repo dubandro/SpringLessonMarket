@@ -17,9 +17,9 @@ public class ProductRepository {
     @PostConstruct
     public void init(){
         productList = new ArrayList<>(Arrays.asList(
-                new Product(1L, "Bread", 50L),
-                new Product(2L, "Milk", 80L),
-                new Product(3L, "Orange", 100L)
+                new Product(1L, "Bread", 50L, 0),
+                new Product(2L, "Milk", 80L, 0),
+                new Product(3L, "Orange", 100L, 0)
         ));
     }
 
@@ -28,8 +28,16 @@ public class ProductRepository {
                 .orElseThrow(() -> new RuntimeException("Товар не неайден"));
     }
 
+    public boolean idIsPresent(Long id) {
+        return productList.stream().anyMatch(p -> p.getId().equals(id));
+    }
+
     public Long nextID() {
-        return productList.get(productList.size()-1).getId() + 1;
+        Long max = 0L;
+        for (Product p : productList) {
+            if (p.getId() > max) max = p.getId();
+        }
+        return max + 1;
     }
 
     public List<Product> productAll() {
@@ -38,5 +46,9 @@ public class ProductRepository {
 
     public void addProduct(Product product) {
         productList.add(product);
+    }
+
+    public void deleteProduct(Long productID) {
+        productList.removeIf(product -> product.getId().equals(productID));
     }
 }

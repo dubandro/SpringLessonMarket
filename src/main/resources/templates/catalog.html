@@ -18,6 +18,7 @@
             <th>id</th>
             <th>title</th>
             <th>cost</th>
+            <th>count</th>
             <td></td>
         </tr>
         </thead>
@@ -26,17 +27,14 @@
             <td th:text="${p.id}"></td>
             <td th:text="${p.title}"></td>
             <td th:text="${p.cost}"></td>
-            <td>
-                <a th:href="@{'/product/' + ${p.id}}" class="btn btn-link">about</a>
-            </td>
+            <td th:text="${p.count}"></td>
         </tr>
         </tbody>
     </table>
     <span th:text="${'total products: ' + catalog.size()}"/>
     <p></p>
     <div class="btn-group" role="group" aria-label="btn_footer">
-        <a th:href="@{'/'}" class="btn btn-outline-primary">market main page</a>
-        <a th:href="@{'/create'}" class="btn btn-outline-primary">add product to catalog</a>
+        <a th:href="@{'/main'}" class="btn btn-outline-primary">market main page</a>
     </div>
 </div>
 </body>

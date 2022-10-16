@@ -12,4 +12,5 @@ public class Product {
     private Long id;
     private String title;
     private Long cost;
+    private Integer count;
 }
